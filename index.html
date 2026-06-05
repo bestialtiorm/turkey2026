@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Турция 2026 — Список вещей</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f5f5f3;--bg3:#ececea;--text:#1a1a18;--text2:#6b6b67;--text3:#9a9a96;--bd:rgba(0,0,0,0.12);--bd2:rgba(0,0,0,0.22);--r:8px;--rlg:12px;--blue:#185FA5;--bluebg:#E6F1FB;--green:#3B6D11;--greenbg:#EAF3DE;--amber:#854F0B;--amberbg:#FAEEDA;--pink:#993556;--pinkbg:#FBEAF0;--teal:#0F6E56;--tealbg:#E1F5EE;--gray:#5F5E5A;--graybg:#F1EFE8}
+@media(prefers-color-scheme:dark){:root{--bg:#1c1c1a;--bg2:#252523;--bg3:#2e2e2c;--text:#f0f0ee;--text2:#9a9a96;--text3:#6a6a66;--bd:rgba(255,255,255,0.1);--bd2:rgba(255,255,255,0.2);--blue:#85B7EB;--bluebg:#0c2a45;--green:#97C459;--greenbg:#182e08;--amber:#EF9F27;--amberbg:#3a2505;--pink:#ED93B1;--pinkbg:#3a1020;--teal:#5DCAA5;--tealbg:#063325;--gray:#B4B2A9;--graybg:#2c2c2a}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh;padding:1rem}
+.app{max-width:760px;margin:0 auto}
+h1{font-size:20px;font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:1.25rem}
+.sync{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);padding:6px 10px;background:var(--bg2);border-radius:var(--r);border:.5px solid var(--bd);margin-bottom:1rem}
+.dot{width:7px;height:7px;border-radius:50%;background:#97C459;flex-shrink:0;transition:background .3s}
+.dot.off{background:#EF9F27}.dot.err{background:#E24B4A}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+.stat{background:var(--bg2);border-radius:var(--r);padding:10px 14px}
+.stat-lbl{font-size:12px;color:var(--text2);margin-bottom:2px}
+.stat-n{font-size:22px;font-weight:600}
+.prog{height:5px;background:var(--bg3);border-radius:3px;margin-bottom:1.25rem;overflow:hidden}
+.prog-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .4s}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:.75rem}
+@media(min-width:520px){.filters{grid-template-columns:repeat(4,1fr)}}
+.filters input,.filters select{width:100%;font-size:13px;padding:6px 10px;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg2);color:var(--text)}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
+.who{font-size:13px;padding:5px 10px;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg2);color:var(--text)}
+.btn{font-size:13px;padding:5px 12px;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background .1s}
+.btn:hover{background:var(--bg2)}.btn:active{transform:scale(.97)}
+.btn-blue{border-color:var(--blue);color:var(--blue)}.btn-blue:hover{background:var(--bluebg)}
+.btn-red{border-color:#A32D2D;color:#A32D2D}.btn-red:hover{background:#FCEBEB}
+.panel{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--rlg);padding:1rem;margin-bottom:1rem}
+.panel h3{font-size:14px;font-weight:600;margin-bottom:8px}
+.panel p{font-size:12px;color:var(--text2);margin-bottom:8px}
+.panel textarea{width:100%;font-size:12px;font-family:monospace;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg);color:var(--text);padding:8px;resize:vertical;min-height:80px}
+.rowf{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+.rowf input,.rowf select{font-size:13px;padding:5px 10px;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg);color:var(--text)}
+.cat-hdr{font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.07em;text-transform:uppercase;padding:4px 0 5px;border-bottom:.5px solid var(--bd);margin:1rem 0 3px;display:flex;justify-content:space-between}
+.iw{border-radius:var(--r);transition:background .25s}
+.iw.sf{background:var(--greenbg)}.iw.sp{background:var(--bluebg)}
+.item{display:flex;align-items:center;gap:6px;padding:5px 7px}
+.chk{width:28px;height:28px;border-radius:7px;border:1.5px solid var(--bd2);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:all .15s}
+.chk:active{transform:scale(.88)}
+.chk.found{background:var(--green);border-color:var(--green);color:#fff}
+.chk.packed{background:var(--blue);border-color:var(--blue);color:#fff}
+.iname{flex:1;font-size:14px;min-width:0;transition:color .2s}
+.iname.done{text-decoration:line-through;color:var(--text2)}
+.pill{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:500;flex-shrink:0;opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s;pointer-events:none}
+.pill.vis{opacity:1;transform:none}
+.pill.pf{background:var(--greenbg);color:var(--green)}
+.pill.pp{background:var(--bluebg);color:var(--blue)}
+.otag{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:500;flex-shrink:0;white-space:nowrap}
+.ltag{font-size:10px;padding:2px 7px;border-radius:99px;background:var(--amberbg);color:var(--amber);flex-shrink:0;white-space:nowrap}
+.qty{font-size:12px;color:var(--text2);flex-shrink:0}
+.msg{font-size:12px;padding:6px 10px;border-radius:var(--r);margin-bottom:8px}
+.empty{text-align:center;padding:2rem;color:var(--text2);font-size:14px}
+.ei{display:none;flex-direction:column;gap:4px;padding:4px 8px 8px}
+.ei input,.ei select{font-size:12px;padding:4px 8px;border-radius:var(--r);border:.5px solid var(--bd2);background:var(--bg);color:var(--text)}
+.er{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.by-badge{font-size:10px;color:var(--text3);flex-shrink:0;white-space:nowrap}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}
+.pop{animation:pop .2s ease-out}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1><i class="ti ti-backpack"></i> Турция 2026</h1>
+
+  <div class="sync">
+    <div class="dot" id="dot"></div>
+    <span id="syncTxt">Подключение...</span>
+    <span style="flex:1"></span>
+    <span id="onlineCount" style="color:var(--text3)"></span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-lbl">Всего</div><div class="stat-n" id="sT">—</div></div>
+    <div class="stat"><div class="stat-lbl">Найдено</div><div class="stat-n" id="sF" style="color:var(--green)">—</div></div>
+    <div class="stat"><div class="stat-lbl">Упаковано</div><div class="stat-n" id="sP" style="color:var(--blue)">—</div></div>
+  </div>
+  <div class="prog"><div class="prog-fill" id="pf" style="width:0"></div></div>
+
+  <div class="filters">
+    <input id="srch" placeholder="Поиск..." oninput="render()">
+    <select id="fO" onchange="render()">
+      <option value="">Все владельцы</option>
+      <option>Общее</option><option>Владик</option><option>Катя</option><option>Даша</option><option>Соня</option>
+    </select>
+    <select id="fS" onchange="render()">
+      <option value="all">Все статусы</option>
+      <option value="todo">Не найдено</option>
+      <option value="found">Найдено</option>
+      <option value="packed">Упаковано</option>
+    </select>
+    <select id="fL" onchange="render()">
+      <option value="">Всё</option>
+      <option value="Ручная кладь">Ручная кладь</option>
+      <option value="Чемодан">Чемодан</option>
+      <option value="none">Без пометки</option>
+    </select>
+  </div>
+
+  <div id="msgBox" class="msg" style="display:none"></div>
+
+  <div class="toolbar">
+    <select id="uname" class="who">
+      <option>Владик</option><option>Катя</option><option>Даша</option><option>Соня</option>
+    </select>
+    <button class="btn btn-blue" onclick="tp('iB')"><i class="ti ti-upload"></i> Импорт</button>
+    <button class="btn" onclick="tp('aB')"><i class="ti ti-plus"></i> Добавить</button>
+    <button class="btn btn-red" onclick="clrAll()" style="margin-left:auto" title="Сбросить все галочки"><i class="ti ti-refresh"></i></button>
+  </div>
+
+  <div id="iB" class="panel" style="display:none">
+    <h3>Импорт JSON</h3>
+    <p>Массив строк или объектов <code>{name, category, qty, owner, luggage}</code></p>
+    <textarea id="jIn"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+      <button class="btn btn-blue" onclick="doImp()">Импортировать</button>
+      <button class="btn" onclick="tp('iB')">Закрыть</button>
+    </div>
+  </div>
+
+  <div id="aB" class="panel" style="display:none">
+    <h3>Новая вещь</h3>
+    <div class="rowf">
+      <input id="nN" placeholder="Название" style="flex:1;min-width:130px" onkeydown="if(event.key==='Enter')doAdd()">
+      <input id="nC" placeholder="Категория" style="width:110px">
+      <input id="nQ" type="number" placeholder="Кол-во" min="1" style="width:68px">
+    </div>
+    <div class="rowf">
+      <select id="nO" style="width:110px"><option>Общее</option><option>Владик</option><option>Катя</option><option>Даша</option><option>Соня</option></select>
+      <select id="nL" style="width:125px"><option value="">Без пометки</option><option>Ручная кладь</option><option>Чемодан</option></select>
+      <button class="btn btn-blue" onclick="doAdd()">Добавить</button>
+      <button class="btn" onclick="tp('aB')">✕</button>
+    </div>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue, update, set, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDcuM10yujZYMyA37jsYR1ppJ_iEGiRIhI",
+  authDomain: "turkey2026-d9e1d.firebaseapp.com",
+  databaseURL: "https://turkey2026-d9e1d-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "turkey2026-d9e1d",
+  storageBucket: "turkey2026-d9e1d.firebasestorage.app",
+  messagingSenderId: "740181172965",
+  appId: "1:740181172965:web:cf793295bd9ad9dad12a0c"
+};
+
+const SEED = [{"id":"i0","name":"Зубная нить","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i1","name":"Зубная паста","category":"Гигиена","qty":2,"owner":"Общее","luggage":"Чемодан"},{"id":"i2","name":"Зубные щётки","category":"Гигиена","qty":4,"owner":"Общее","luggage":"Чемодан"},{"id":"i3","name":"Мокрые салфетки","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i4","name":"Носовые платки","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i5","name":"Пелёнки","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i6","name":"Сухие салфетки","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i7","name":"Туалетная бумага","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i8","name":"Банковские карточки","category":"Документы","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i9","name":"Ваучер","category":"Документы","qty":2,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i10","name":"Деньги","category":"Документы","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i11","name":"Паспорта","category":"Документы","qty":4,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i12","name":"Свидетельства о рождении","category":"Документы","qty":2,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i13","name":"Страховка","category":"Документы","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i14","name":"Силванол Ресвератрол","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i15","name":"Силванол Берберин","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i16","name":"Amala","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i17","name":"Thalisadi","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i18","name":"Brahmi","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i19","name":"Panthenol","category":"Лекарства","qty":2,"owner":"Общее","luggage":"Чемодан"},{"id":"i20","name":"Berocca Plus","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i21","name":"Dentinox","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i22","name":"Dermaseptic","category":"Лекарства","qty":2,"owner":"Общее","luggage":"Чемодан"},{"id":"i23","name":"Fucithalmic","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i24","name":"Hydratonic","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i25","name":"Ibumetin","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i26","name":"Immodium","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i27","name":"Lacto Seven","category":"Лекарства","qty":4,"owner":"Общее","luggage":"Чемодан"},{"id":"i28","name":"Ibugard","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i29","name":"Bepanthen Eye","category":"Лекарства","qty":2,"owner":"Общее","luggage":"Чемодан"},{"id":"i30","name":"Systan Complete","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i31","name":"Enterol","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i32","name":"Omeprozole","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i33","name":"Smecta","category":"Лекарства","qty":6,"owner":"Общее","luggage":"Чемодан"},{"id":"i34","name":"Travelan (детский, от укачивания)","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i35","name":"Livol Extra Travel (взрослый, от укачивания)","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i36","name":"Парацетамол","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i37","name":"Антибиотики","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i38","name":"Градусник","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i39","name":"Йод","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i40","name":"Перекись","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i41","name":"Пластыри","category":"Лекарства","qty":2,"owner":"Общее","luggage":"Чемодан"},{"id":"i42","name":"Тавегил","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i43","name":"Faringospray","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i44","name":"Уголь активированный","category":"Лекарства","qty":4,"owner":"Общее","luggage":"Чемодан"},{"id":"i45","name":"Витамины Кате","category":"Лекарства","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i46","name":"Orthomol Flavon M","category":"Лекарства","qty":8,"owner":"Общее","luggage":"Чемодан"},{"id":"i47","name":"Брюки","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i48","name":"Кепки","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i49","name":"Куртка / ветровка","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i50","name":"Майки","category":"Одежда","qty":4,"owner":"Владик","luggage":"Чемодан"},{"id":"i51","name":"Носки","category":"Одежда","qty":8,"owner":"Владик","luggage":"Чемодан"},{"id":"i52","name":"Обувь","category":"Одежда","qty":3,"owner":"Владик","luggage":"Чемодан"},{"id":"i53","name":"Плавки","category":"Одежда","qty":2,"owner":"Владик","luggage":"Чемодан"},{"id":"i54","name":"Полотенце","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i55","name":"Рубашки","category":"Одежда","qty":3,"owner":"Владик","luggage":"Чемодан"},{"id":"i56","name":"Свитер / байка","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i57","name":"Трусы","category":"Одежда","qty":7,"owner":"Владик","luggage":"Чемодан"},{"id":"i58","name":"Шорты","category":"Одежда","qty":2,"owner":"Владик","luggage":"Чемодан"},{"id":"i59","name":"Multitool","category":"Разное","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i60","name":"Бутылка для воды","category":"Разное","qty":4,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i61","name":"Зонтик","category":"Разное","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i62","name":"Книга","category":"Разное","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i63","name":"Крем для загара (детский + взрослый)","category":"Разное","qty":4,"owner":"Общее","luggage":"Чемодан"},{"id":"i64","name":"Надувные принадлежности для купания","category":"Разное","qty":3,"owner":"Общее","luggage":"Чемодан"},{"id":"i65","name":"Маска + очки для плавания","category":"Разное","qty":4,"owner":"Общее","luggage":"Чемодан"},{"id":"i66","name":"Ручки","category":"Разное","qty":2,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i67","name":"Солнечные очки","category":"Разное","qty":4,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i68","name":"Эфирные масла","category":"Разное","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i69","name":"Лопатки и формочки для песка","category":"Разное","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i70","name":"Power Bank","category":"Техника","qty":2,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i71","name":"Батарейки AA (для вспышки)","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i72","name":"Батарейки AAA","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i73","name":"Батарейки для фотоаппарата","category":"Техника","qty":4,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i74","name":"Бритва","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i75","name":"Доп. microSD","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i76","name":"Зарядка для фото-батареек","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i77","name":"Зарядка для часов","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i78","name":"Зарядки для телефона","category":"Техника","qty":4,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i79","name":"Наушники","category":"Техника","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i80","name":"Планшет","category":"Техника","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i81","name":"Телефон","category":"Техника","qty":2,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i82","name":"Утюг","category":"Техника","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i83","name":"Фонарик","category":"Техника","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i84","name":"Фотоаппарат","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i85","name":"Часы","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i86","name":"Селфи-палка","category":"Техника","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i87","name":"Штатив","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i88","name":"Платья (Катя)","category":"Одежда","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i89","name":"Купальники (Катя)","category":"Одежда","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i90","name":"Шапка (Катя)","category":"Одежда","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i91","name":"Юбки (Катя)","category":"Одежда","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i92","name":"Платья (Даша)","category":"Одежда","qty":1,"owner":"Даша","luggage":"Чемодан"},{"id":"i93","name":"Купальники (Даша)","category":"Одежда","qty":1,"owner":"Даша","luggage":"Чемодан"},{"id":"i94","name":"Шапка (Даша)","category":"Одежда","qty":1,"owner":"Даша","luggage":"Чемодан"},{"id":"i95","name":"Шапочка для купания (Даша)","category":"Одежда","qty":1,"owner":"Даша","luggage":"Чемодан"},{"id":"i96","name":"Леггинсы (Даша)","category":"Одежда","qty":1,"owner":"Даша","luggage":"Чемодан"},{"id":"i97","name":"Платья (Соня)","category":"Одежда","qty":1,"owner":"Соня","luggage":"Чемодан"},{"id":"i98","name":"Купальники (Соня)","category":"Одежда","qty":1,"owner":"Соня","luggage":"Чемодан"},{"id":"i99","name":"Шапка (Соня)","category":"Одежда","qty":1,"owner":"Соня","luggage":"Чемодан"},{"id":"i100","name":"БАКА (Соня)","category":"Разное","qty":1,"owner":"Соня","luggage":"Ручная кладь"},{"id":"i101","name":"Зарядка для фотоаппарата (Соня)","category":"Техника","qty":1,"owner":"Соня","luggage":"Ручная кладь"},{"id":"i102","name":"Чай","category":"Еда","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i103","name":"Коробочки для еды","category":"Еда","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i104","name":"Пенал","category":"Разное","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i105","name":"Пенка для умывания","category":"Косметика","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i106","name":"Кремы и серум","category":"Косметика","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i107","name":"Ватные диски","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i108","name":"Расчёски","category":"Гигиена","qty":2,"owner":"Общее","luggage":"Чемодан"},{"id":"i109","name":"Резинки, обручи, заколки","category":"Гигиена","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i110","name":"Флешки","category":"Техника","qty":1,"owner":"Владик","luggage":"Ручная кладь"},{"id":"i111","name":"Походная сумка","category":"Разное","qty":1,"owner":"Общее","luggage":"Чемодан"},{"id":"i112","name":"Билеты","category":"Документы","qty":1,"owner":"Общее","luggage":"Ручная кладь"},{"id":"i113","name":"Дезодорант","category":"Гигиена","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i114","name":"Крем от усталых ног","category":"Косметика","qty":1,"owner":"Катя","luggage":"Чемодан"},{"id":"i115","name":"Трусы (Владик)","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"},{"id":"i116","name":"Носки (Владик)","category":"Одежда","qty":1,"owner":"Владик","luggage":"Чемодан"}];
+
+const OC = {Владик:'var(--blue)',Катя:'var(--pink)',Даша:'var(--green)',Соня:'var(--amber)',Общее:'var(--gray)'};
+const OB = {Владик:'var(--bluebg)',Катя:'var(--pinkbg)',Даша:'var(--greenbg)',Соня:'var(--amberbg)',Общее:'var(--graybg)'};
+const OWNERS = ['Общее','Владик','Катя','Даша','Соня'];
+const LUGS = ['','Ручная кладь','Чемодан'];
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const itemsRef = ref(db, 'items');
+
+let items = [];
+let editId = null;
+let initialized = false;
+
+function setSyncStatus(state, txt) {
+  const dot = document.getElementById('dot');
+  const msg = document.getElementById('syncTxt');
+  dot.className = 'dot' + (state === 'ok' ? '' : state === 'off' ? ' off' : ' err');
+  msg.textContent = txt;
+}
+
+function showMsg(t, ok=true) {
+  const b = document.getElementById('msgBox');
+  b.textContent = t; b.style.display = 'block';
+  b.style.background = ok ? 'var(--greenbg)' : '#FCEBEB';
+  b.style.color = ok ? 'var(--green)' : '#A32D2D';
+  setTimeout(() => b.style.display = 'none', 2500);
+}
+
+function updStats() {
+  const tot = items.length, f = items.filter(i=>i.found).length, p = items.filter(i=>i.packed).length;
+  document.getElementById('sT').textContent = tot;
+  document.getElementById('sF').textContent = f;
+  document.getElementById('sP').textContent = p;
+  document.getElementById('pf').style.width = (tot ? Math.round(p/tot*100) : 0) + '%';
+}
+
+onValue(itemsRef, snap => {
+  const data = snap.val();
+  if (!data) {
+    if (!initialized) {
+      // First run — seed the database
+      const seedObj = {};
+      SEED.forEach(it => { seedObj[it.id] = {...it, found:false, packed:false, by:''}; });
+      set(itemsRef, seedObj);
+    }
+    return;
+  }
+  initialized = true;
+  items = Object.values(data);
+  updStats();
+  render();
+  setSyncStatus('ok', 'Синхронизировано · изменения видны у всех');
+}, err => {
+  setSyncStatus('err', 'Ошибка подключения: ' + err.message);
+});
+
+window.tog = function(id, field) {
+  const it = items.find(i=>i.id===id); if (!it) return;
+  const who = document.getElementById('uname').value;
+  const upd = {};
+  if (field === 'found') {
+    upd.found = !it.found;
+    if (!upd.found) upd.packed = false;
+    else upd.packed = it.packed;
+  } else {
+    upd.packed = !it.packed;
+    upd.found = upd.packed ? true : it.found;
+  }
+  upd.by = who;
+  setSyncStatus('off', 'Сохранение...');
+  update(ref(db, 'items/' + id), upd);
+};
+
+window.del = function(id) {
+  remove(ref(db, 'items/' + id));
+  editId = null;
+};
+
+window.startEdit = function(id) {
+  editId = (editId === id) ? null : id;
+  render();
+};
+
+window.saveEdit = function(id) {
+  const n = document.getElementById('en_'+id).value.trim(); if (!n) return;
+  update(ref(db, 'items/'+id), {
+    name: n,
+    category: document.getElementById('ec_'+id).value.trim() || 'Общее',
+    qty: parseInt(document.getElementById('eq_'+id).value) || 1,
+    owner: document.getElementById('eo_'+id).value,
+    luggage: document.getElementById('el_'+id).value
+  });
+  editId = null;
+  showMsg('Сохранено');
+};
+
+window.render = function() {
+  const fS = document.getElementById('fS').value;
+  const fO = document.getElementById('fO').value;
+  const fL = document.getElementById('fL').value;
+  const q = (document.getElementById('srch').value||'').toLowerCase();
+  const vis = items.filter(it => {
+    if (q && !it.name.toLowerCase().includes(q) && !it.category.toLowerCase().includes(q) && !(it.owner||'').toLowerCase().includes(q)) return false;
+    if (fO && it.owner !== fO) return false;
+    if (fS === 'todo' && it.found) return false;
+    if (fS === 'found' && (!it.found || it.packed)) return false;
+    if (fS === 'packed' && !it.packed) return false;
+    if (fL === 'none' && it.luggage) return false;
+    if (fL && fL !== 'none' && it.luggage !== fL) return false;
+    return true;
+  });
+  const cats = {};
+  vis.forEach(it => { const c = it.category||'Общее'; (cats[c]=cats[c]||[]).push(it); });
+  const el = document.getElementById('list');
+  if (!vis.length) { el.innerHTML = '<div class="empty">Ничего не найдено</div>'; return; }
+
+  el.innerHTML = Object.keys(cats).sort().map(cat => {
+    const done = cats[cat].filter(i=>i.packed).length;
+    return `<div class="cat-hdr"><span>${cat}</span><span style="font-weight:400">${done}/${cats[cat].length}</span></div>` +
+    cats[cat].map(it => {
+      const oc = OC[it.owner]||'var(--gray)', ob = OB[it.owner]||'var(--graybg)';
+      const wc = 'iw' + (it.packed?' sp':it.found?' sf':'');
+      const pc = 'pill' + (it.packed?' pp vis':it.found?' pf vis':'');
+      const isE = editId === it.id;
+      const eF = isE ? `<div class="ei" style="display:flex" id="ef_${it.id}">
+        <div class="er"><input id="en_${it.id}" value="${it.name.replace(/"/g,'&quot;')}" style="flex:1;min-width:130px"><input id="ec_${it.id}" value="${it.category}" style="width:100px"><input id="eq_${it.id}" type="number" value="${it.qty}" style="width:56px" min="1"></div>
+        <div class="er">
+          <select id="eo_${it.id}">${OWNERS.map(o=>`<option value="${o}"${it.owner===o?' selected':''}>${o}</option>`).join('')}</select>
+          <select id="el_${it.id}">${LUGS.map(o=>`<option value="${o}"${it.luggage===o?' selected':''}>${o||'Без пометки'}</option>`).join('')}</select>
+          <button class="btn btn-blue" onclick="saveEdit('${it.id}')" style="padding:3px 10px;font-size:12px">Сохранить</button>
+          <button class="btn btn-red" onclick="del('${it.id}')" style="padding:3px 8px;font-size:12px"><i class="ti ti-trash"></i></button>
+          <button class="btn" onclick="startEdit('${it.id}')" style="padding:3px 8px;font-size:12px">✕</button>
+        </div>
+      </div>` : '';
+      return `<div id="w_${it.id}" class="${wc}">
+        <div class="item">
+          <button class="chk${it.found?' found':''}" onclick="tog('${it.id}','found')">${it.found?'<i class="ti ti-check"></i>':'✓'}</button>
+          <button class="chk${it.packed?' packed':''}" onclick="tog('${it.id}','packed')">${it.packed?'<i class="ti ti-package"></i>':'📦'}</button>
+          <span class="iname${it.packed?' done':''}">${it.name}${it.qty>1?` <span class="qty">×${it.qty}</span>`:''}</span>
+          <span class="${pc}">${it.packed?'в чемодане':it.found?'найдено':''}</span>
+          <span class="otag" style="background:${ob};color:${oc}">${it.owner||'?'}</span>
+          ${it.luggage?`<span class="ltag">${it.luggage}</span>`:''}
+          ${it.by?`<span class="by-badge">${it.by}</span>`:''}
+          <button class="btn" onclick="startEdit('${it.id}')" style="padding:2px 6px;font-size:12px;flex-shrink:0"><i class="ti ti-edit"></i></button>
+        </div>${eF}
+      </div>`;
+    }).join('');
+  }).join('');
+};
+
+window.tp = function(id) {
+  const b = document.getElementById(id);
+  b.style.display = b.style.display === 'none' ? 'block' : 'none';
+};
+
+window.doImp = function() {
+  try {
+    const raw = JSON.parse(document.getElementById('jIn').value);
+    if (!Array.isArray(raw)) throw new Error('Нужен массив');
+    const ex = items.map(i=>i.name.toLowerCase());
+    let added = 0;
+    raw.forEach((r, i) => {
+      const base = {found:false, packed:false, by:''};
+      const ni = typeof r === 'string'
+        ? {...base, id:'imp'+Date.now()+i, name:r, category:'Общее', qty:1, owner:'Общее', luggage:''}
+        : {...base, id:'imp'+Date.now()+i, name:r.name||'Вещь', category:r.category||'Общее', qty:r.qty||1, owner:r.owner||'Общее', luggage:r.luggage||''};
+      if (!ex.includes(ni.name.toLowerCase())) {
+        set(ref(db, 'items/'+ni.id), ni);
+        ex.push(ni.name.toLowerCase());
+        added++;
+      }
+    });
+    showMsg(`Добавлено ${added} вещей`);
+    tp('iB');
+  } catch(e) { showMsg('Ошибка: '+e.message, false); }
+};
+
+window.doAdd = function() {
+  const name = document.getElementById('nN').value.trim(); if (!name) return;
+  const id = 'a' + Date.now();
+  set(ref(db, 'items/'+id), {
+    id, name,
+    category: document.getElementById('nC').value.trim() || 'Общее',
+    qty: parseInt(document.getElementById('nQ').value) || 1,
+    owner: document.getElementById('nO').value,
+    luggage: document.getElementById('nL').value,
+    found: false, packed: false, by: ''
+  });
+  document.getElementById('nN').value = '';
+  document.getElementById('nQ').value = '';
+  showMsg('Добавлено: ' + name);
+  document.getElementById('nN').focus();
+};
+
+window.clrAll = function() {
+  if (!confirm('Сбросить все галочки?')) return;
+  const upd = {};
+  items.forEach(it => { upd['items/'+it.id+'/found'] = false; upd['items/'+it.id+'/packed'] = false; upd['items/'+it.id+'/by'] = ''; });
+  update(ref(db), upd);
+};
+
+setSyncStatus('off', 'Подключение к Firebase...');
+</script>
+</body>
+</html>
