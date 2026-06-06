@@ -110,6 +110,7 @@ h1{font-size:20px;font-weight:600;display:flex;align-items:center;gap:8px;margin
     <button class="btn btn-blue" onclick="tp('iB')"><i class="ti ti-upload"></i> Импорт</button>
     <button class="btn" onclick="tp('aB')"><i class="ti ti-plus"></i> Добавить</button>
     <button class="btn btn-red" onclick="clrAll()" style="margin-left:auto" title="Сбросить все галочки"><i class="ti ti-refresh"></i></button>
+    <button id="restoreBtn" class="btn" onclick="restoreAll()" style="display:none;border-color:var(--amber);color:var(--amber)"><i class="ti ti-database-import"></i> Восстановить список</button>
   </div>
 
   <div id="iB" class="panel" style="display:none">
@@ -195,15 +196,19 @@ function updStats() {
 onValue(itemsRef, snap => {
   const data = snap.val();
   if (!data) {
+    // База пустая — показываем кнопку восстановления, НЕ перезаписываем автоматически
     if (!initialized) {
-      // First run — seed the database
-      const seedObj = {};
-      SEED.forEach(it => { seedObj[it.id] = {...it, found:false, packed:false, by:''}; });
-      set(itemsRef, seedObj);
+      setSyncStatus('off', 'База пуста — нажми «Восстановить список»');
+      document.getElementById('restoreBtn').style.display = 'inline-flex';
     }
+    initialized = true;
+    items = [];
+    updStats();
+    render();
     return;
   }
   initialized = true;
+  document.getElementById('restoreBtn').style.display = 'none';
   items = Object.values(data);
   updStats();
   render();
@@ -351,10 +356,21 @@ window.doAdd = function() {
 };
 
 window.clrAll = function() {
-  if (!confirm('Сбросить все галочки?')) return;
+  if (!confirm('Сбросить все галочки? Это нельзя отменить.')) return;
+  if (!confirm('Уверен? Все отметки у обоих будут сброшены.')) return;
   const upd = {};
   items.forEach(it => { upd['items/'+it.id+'/found'] = false; upd['items/'+it.id+'/packed'] = false; upd['items/'+it.id+'/by'] = ''; });
   update(ref(db), upd);
+  showMsg('Все галочки сброшены');
+};
+
+window.restoreAll = function() {
+  if (!confirm('Восстановить исходный список из 117 вещей? Текущие данные будут перезаписаны.')) return;
+  const seedObj = {};
+  SEED.forEach(it => { seedObj[it.id] = {...it, found:false, packed:false, by:''}; });
+  set(itemsRef, seedObj);
+  document.getElementById('restoreBtn').style.display = 'none';
+  showMsg('Список восстановлен из резервной копии');
 };
 
 setSyncStatus('off', 'Подключение к Firebase...');
